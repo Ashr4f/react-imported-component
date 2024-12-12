@@ -73,7 +73,7 @@ export function lazy<T>(importer: LazyImport<T>): React.FC<T> {
 
   if (process.env.NODE_ENV !== 'production') {
     // lazy is not hot-reloadable
-    if ((module as any).hot) {
+    if (typeof module !== 'undefined' && (module as any)?.hot) {
       return loader(importer, { async: true });
     }
   }
